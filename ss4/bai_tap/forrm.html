@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--form ko thể lồng vào nhau dc-->
+<!-- table dùng để chỉnh các dòng sao cho đẹp mắt hơn-->
+<!-- phân biệt 2 phương thức gửi dữ liệu ở form-->
+<!--dữ liệu gửi đi đới với get sẽ hiển thị trên URL, post thì ko-->
+<!-- get ko sử dụng để để gửi các dữ liệu nhạy cảm như mk, post thì dc-->
+<!--get thì dc dùng để gửi một dung lượng nhỏ, post thì ko giới hạn-->
+<!--get thì gửi dc dữ liệu dạng text(dạng văn bản), post thì -->
+<!--dữ liệu gửi di bởi get có the cache lại bởi trình duyệt, còn post thì ko -->
+<form action="https:// abcdfg.com" method="get">
+    <!-- thuộc tính name ở ô input có nv gửi dữ liệu nhập của người dùng vào và di-->
+    user name:<input type="text" name="user name"><br>
+    password: <input type="password" name="password"><br>
+    salary:   <input type="number" name="salary"><br>
+    gender:   <input type="radio" name="gender">
+    nam <input type="radio" name="gender"> nữ<br>
+    hobbies <input type="checkbox" name="hobbies" > đá bóng
+     <input type="checkbox" name="hobbies"> đá cầu
+     <input type="checkbox" name="hobbies"> coding
+     <input type="checkbox" name="hobbies"> cầu lông
+     <input type="checkbox" name="hobbies"> game
+    birthday <input type="date" name="birthday">
+    address
+    <textarea></textarea>
+    <input type="submit" value="submit">
+    <table border="1">
+        <!-- th là tiêu đề-->
+        <!-- cellspacing="" tăng khoảng cách các ô-->
+        <!--border="" tạo bảng, chiều rộng có chỉnh bằng cách đánh số vào-->
+        <!-- phiển bản 1 cột tiều đề ngang-->
+        <tr>
+            <th>tên</th>
+            <th>email</th>
+        </tr>
+        <tr>
+            <td>bách</td>
+            <td>bách@gami.com</td>
+        </tr>
+        <!--phiên bản 2 cột chiều dọc-->
+        <tr>
+            <th>Tên</th>
+            <td>Bách</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>phambach@gmail.com</td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>
