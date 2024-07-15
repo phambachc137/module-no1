@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2><span style="color:red">Nhập điểm học sinh</span></h2>
+<table style="border-collapse: collapse">
+<tr>
+    <th>vật lý</th>
+    <th><input type="number" id="vật lý"</th>
+</tr>
+<tr>
+    <th>sinh học</th>
+    <th><input type="number" id="sinh học"</th>
+</tr>
+<tr>
+    <th>hóa học</th>
+    <th><input type="number" id="hóa học"</th>
+</tr>
+</table>
+<input type="reset" value="reset">
+<button type="button" onclick="Total()">kết quả</button>
+<p id="total">Tổng điểm:</p>
+<p id="average">Trung bình điểm:</p>
+<script>
+    function Total(){
+        let vatly = document.getElementById('vật lý').value;
+        let sinhhoc = document.getElementById('sinh học').value;
+        let hoahoc = document.getElementById('hóa học').value;
+        let tổng = vatly + sinhhoc + hoahoc
+        let tbc = (vatly + sinhhoc + hoahoc)/3
+        document.getElementById('total').innerText = 'tổng: '+tổng;
+        document.getElementById('average').innerText = 'trung bình: '+ tbc;
+    }
+</script>
+<h2><span style="color:deepskyblue">Chuyển đổi nhiệt độ</span></h2>
+<input type="number" id="độ C"> C <br>
+<input type="number" id="độ F"> F <br>
+<button type="button" onclick="ConvertF()">Chuyển sang độ F</button>
+<button type="button" onclick="ConvertC()">Chuyển sang độ C</button>
+<script>
+    function ConvertF(){
+        let doC =document.getElementById('độ C').value;
+        let doF =(doC/5*9)+32
+        document.getElementById('độ F').value =doF
+    }
+    function ConvertC(){
+        let doF =document.getElementById('độ F').value;
+        let doC =(doF-32)/9*5
+        document.getElementById('độ C').value = doC
+    }
+</script>
+<h2><span style="color: lime">Diện tích hình tròn</span></h2>
+<h2><span style="color: lime">Chu vi hình tròn</span></h2>
+<table style="border-collapse: collapse"></table>
+<tr>
+    <th>Bán kính</th>
+    <th><input type="number" id="r"></th>
+</tr>
+<input type="button" onclick="total()" value="kết quả">
+<p id="diện tích ">Diện tích hình tròn:</p>
+<p id="chu vi">Chu vi hình tròn: </p>
+<script>
+    function total(){
+        let R =  document.getElementById('r').value;
+        let Q = R*R*Math.PI
+        let M = 2*R*Math.PI
+        document.getElementById('diện tích').innerText ='diện tích' + Q
+        document.getElementById('chu vi').innerText ='chu vi' + M
+</script>
+</form>
+</body>
+</html>
