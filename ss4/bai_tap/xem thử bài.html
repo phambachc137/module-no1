@@ -5,45 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-<h2>Bài 1: Viết chương trình nhập điểm của một sinh viên cho các môn: Vật lý, Hóa học, và Sinh học. Sau đó hiển thị điểm trung bình và tổng của những điểm này</h2>
-Vật lý: <input type="number" id="vatLy"> <br>
-Hóa học: <input type="number" id="hoaHoc"> <br>
-Sinh học: <input type="number" id="sinhHoc"> <br>
-<button onclick="bai1()">Xem Kết Quả</button> <br>
-<p id="hienThiKetQua"></p>
-
-<h2>Bài 2:  Viết chương trình nhập một giá trị là độ 0C (Celsius) và chuyển nó sang độ 0F (Fahrenheit). [Hướng dẫn: C/5 = (F-32)/9]</h2>
-Nhập nhiệt độ C: <input type="number" id="doC">
-<button onclick="bai2()">Chuyển Đổi</button> <br>
-<p id="nhietDoF"></p>
-
-<h2>Bài 3+4: Viết chương trình tính chu vi và diện tích hình tròn</h2>
-Bán kính hình tròn: <input type="number" id="banKinh">
-<button onclick="bai3_4()">Tính</button> <br>
-<p>Với số pi = 3.14</p>
-<p id="ketQua"></p>
-</body>
 <script>
-    function bai1() {
-        let diemVatLy = + document.getElementById("vatLy").value;
-        let diemHoaHoc = + document.getElementById("hoaHoc").value;
-        let diemSinhHoc = + document.getElementById("sinhHoc").value;
-        let tong = diemVatLy + diemHoaHoc + diemSinhHoc;
-        let tbc = (diemVatLy + diemHoaHoc + diemSinhHoc)/3;
-        document.getElementById("hienThiKetQua").innerHTML = "<b>Điểm trung bình:</b> "+tbc+" <b>Tổng:</b> "+tong;
+    let weight = +prompt("Nhập cân nặng (kg)");
+    let height = +prompt("Nhập chiều cao (m)");
+    let bmi = weight/(height^2);
+    if (bmi >= 30) {
+        alert("Obese");
+    } else if (bmi >= 25) {
+        alert("Overweight");
+    } else if (bmi >= 18.5) {
+        alert("Normal");
+    } else {
+        alert("Underweight");
     }
-    function bai2() {
-        let doC = + document.getElementById("doC").value;
-        let doF = doC/5*9+32;
-        document.getElementById("nhietDoF").innerText = doF+" độ F";
-    }
-    function bai3_4() {
-        let r = + document.getElementById("banKinh").value;
-        let chuVi = 2*3.14*r;
-        let dienTich = 3.14*r*r;
-        document.getElementById("ketQua").innerHTML = "<b>Chu vi:</b> "+chuVi.toFixed(2)+" <b>Diện tích:</b> "+dienTich.toFixed(2);
-
-    }
+</script>
 </script>
 </body>
 </html>

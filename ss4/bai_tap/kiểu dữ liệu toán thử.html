@@ -9,15 +9,15 @@
 <table style="border-collapse: collapse">
 <tr>
     <th>vật lý</th>
-    <th><input type="number" id="vật lý"</th>
+    <th><input type="number" id="vật lý"></th>
 </tr>
 <tr>
     <th>sinh học</th>
-    <th><input type="number" id="sinh học"</th>
+    <th><input type="number" id="sinh học"></th>
 </tr>
 <tr>
     <th>hóa học</th>
-    <th><input type="number" id="hóa học"</th>
+    <th><input type="number" id="hóa học"></th>
 </tr>
 </table>
 <input type="reset" value="reset">
@@ -26,11 +26,11 @@
 <p id="average">Trung bình điểm:</p>
 <script>
     function Total(){
-        let vatly = document.getElementById('vật lý').value;
-        let sinhhoc = document.getElementById('sinh học').value;
-        let hoahoc = document.getElementById('hóa học').value;
-        let tổng = vatly + sinhhoc + hoahoc
-        let tbc = (vatly + sinhhoc + hoahoc)/3
+        let vatly = + document.getElementById('vật lý').value;
+        let sinhhoc = + document.getElementById('sinh học').value;
+        let hoahoc = + document.getElementById('hóa học').value;
+        let tổng = vatly+sinhhoc+hoahoc;
+        let tbc = (vatly+sinhhoc+hoahoc)/3;
         document.getElementById('total').innerText = 'tổng: '+tổng;
         document.getElementById('average').innerText = 'trung bình: '+ tbc;
     }
@@ -53,22 +53,38 @@
     }
 </script>
 <h2><span style="color: lime">Diện tích hình tròn</span></h2>
-<h2><span style="color: lime">Chu vi hình tròn</span></h2>
-<table style="border-collapse: collapse"></table>
-<tr>
-    <th>Bán kính</th>
-    <th><input type="number" id="r"></th>
-</tr>
-<input type="button" onclick="total()" value="kết quả">
-<p id="diện tích ">Diện tích hình tròn:</p>
-<p id="chu vi">Chu vi hình tròn: </p>
+<table style="border-collapse: collapse">
+    <tr>
+        <th>Bán kính</th>
+        <th><input type="number" id="r"></th>
+    </tr>
+</table>
+<th><input type="reset" value="reset"></th>
+<th><button type="button" onclick="dientich()">Diện tích</button></th>
+<p id="diện tích">Diện tích hình tròn:</p>
 <script>
-    function total(){
-        let R =  document.getElementById('r').value;
-        let Q = R*R*Math.PI
-        let M = 2*R*Math.PI
-        document.getElementById('diện tích').innerText ='diện tích' + Q
-        document.getElementById('chu vi').innerText ='chu vi' + M
+    function dientich(){
+    let R = +document.getElementById('r').value;
+    let M = R*R*3.14;
+    document.getElementById('diện tích').innerText='Diện tích:' + M;
+}
+</script>
+<h2><span style="color: lime"> Chu vi hình tròn</span></h2>
+<table style="border-collapse: collapse">
+    <tr>
+        <th>Bán kính:</th>
+        <th><input type="number" id="d"></th>
+    </tr>
+</table>
+<p><button type="button" onclick="chuvi()">Chu vi</button></p>
+<input type="reset" value="reset">
+<p id="chu vi">Chu vi hình tròn</p>
+<script>
+    function chuvi(){
+        let R = +document.getElementById('d').value;
+        let M = 2*R*3.14;
+        document.getElementById('chu vi').innerText='Chu vi:' +M;
+    }
 </script>
 </form>
 </body>
