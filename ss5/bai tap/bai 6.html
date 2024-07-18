@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    alert("Hoa hồng nhận theo doanh số bán hàngg");
+
+    let income = parseFloat(prompt("Nhập số tiền"));
+
+    let commission = 0;
+
+    if (income<=700.000) {
+        commission = income * 0.05;
+        alert("Hoa hồng nhận được "+commission);
+    } else if (income<=900.000) {
+        commission = income * 0.5;
+        alert("Hoa hồng nhận được "+commission);
+    } else if (income<=5000000) {
+        commission = income * 2;
+        alert("Hoa hồng nhận được "+commission);
+    } else {
+        commission = income * 3;
+        alert("Hoa hồng nhận được "+commission);
+    }
+</script>
+</body>
+</html>

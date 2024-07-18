@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let kiemtra = +prompt("Nhập điểm kiểm tra");
+    let giuaky = +prompt("Nhập điểm kiểm tra giữa kỳ");
+    let cuoiky = +prompt("Nhập điểm kiểm tra cuối kỳ");
+    let tong = (kiemtra+giuaky+cuoiky)/3;
+    if (tong >= 9) {
+        alert("Giỏi");
+    } else if (tong >= 7) {
+        alert("Khá");
+    } else if (tong >= 5) {
+        alert("Trung Bình");
+    } else {
+        alert("Yếu Kém");
+    }
+</script>
+</body>
+</html>

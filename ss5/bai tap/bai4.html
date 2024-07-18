@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = +prompt("Nhập 1 số");
+    let b = +prompt("Nhập 1 số");
+    let c = +prompt("Nhập 1 số");
+    if (Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c)) {
+        if (a > b && a > c) {
+            alert(a+" là số lớn nhất");
+        } else if (b > c) {
+            alert(b+" là số lớn nhất");
+        } else {
+            alert(c+" là số lớn nhất");
+        }
+    } else {
+        alert("Số đã nhập không phải số nguyên");
+    }
+</script>
+</body>
+</html>
