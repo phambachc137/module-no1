@@ -5,20 +5,33 @@
     <title>Title</title>
 </head>
 <body>
+<input type="number" id="inputmonth"> <button onclick="tinhSoNgay()">Tính số ngày</button> <br>
+<p id="result"></p>
 <script>
-    let weight = +prompt("Nhập cân nặng (kg)");
-    let height = +prompt("Nhập chiều cao (m)");
-    let bmi = weight/(height^2);
-    if (bmi >= 30) {
-        alert("Obese");
-    } else if (bmi >= 25) {
-        alert("Overweight");
-    } else if (bmi >= 18.5) {
-        alert("Normal");
-    } else {
-        alert("Underweight");
+    function tinhSoNgay() {
+        let month = +document.getElementById("inputmonth").value;
+        console.log(month);
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                document.getElementById("result").innerText = "Tháng "+month+" có 31 ngày";
+                break;
+            case 2:
+                document.getElementById("result").innerText = "Tháng "+month+" có 28 hoặc 29 ngày";
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                document.getElementById("result").innerText = "Tháng "+month+" có 30 ngày";
+                break;
+        }
     }
-</script>
 </script>
 </body>
 </html>
