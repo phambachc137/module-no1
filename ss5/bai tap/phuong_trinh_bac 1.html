@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="panel">
+    <div class="panel-heading">
+        Giai phuong trinh bac nhat ax+b=0
+    </div>
+    <div class="panel-body">
+        <button class="button" onclick="nhapA()">Nhap A</button>
+        <button class="button" onclick="nhapB()">Nhap B</button>
+        <button class="button" onclick="printResult()">In Ket Qua</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var a, b;
+
+    function nhapA() {
+        a = prompt('Nhap A')
+    }
+
+    function nhapB() {
+        b = prompt('Nhap B')
+    }
+
+    function printResult() {
+        if(a == 0) {
+            if(b == 0) {
+                alert('PTVSN')
+            } else {
+                alert('PTVN')
+            }
+        } else {
+            x = -b/a
+            alert(x)
+        }
+    }
+</script>
+</body>
+</html>
