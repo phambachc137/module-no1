@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a =+prompt("nhập số điện tiêu thự:")
+    if(a<0){
+        alert("nhập sai vui lòng nhập lại")
+    }else if(a<50){
+         x= a*1.678
+    }else if(a<100){
+         x=1.678*50 + 1.734*(a-50);
+    }else if(a<200){
+        x=1.678*50 + 1.734*50 + 2.014*(a-100);
+    }else if(a<300){
+        x=1.678*50 + 1.734*50 + 2.014*100 + 2.536*(a-200);
+    }else if(a<400){
+        1.678*50 + 1.734*50 + 2.014*100 + 2.536*100 + 2.834*(a-300);
+    }else{
+        x=1.678*50 + 1.734*50 + 2.014*100 + 2.536*100 + 2.834*100 + 2.927*(a-400);
+    }
+    alert("số tiền điện là"+x)
+
+
+</script>
+</body>
+</html>

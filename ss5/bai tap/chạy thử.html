@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let kwh = parseFloat(prompt("Nhập số điện đã dùng (kWh)"));
+    let fee = 0.0;
+    if (kwh > 0 && !isNaN(kwh)) {
+        if (kwh <= 50) {
+            fee = 1.678*kwh;
+        } else if (kwh <= 100) {
+            fee = 1.678*50 + 1.734*(kwh-50);
+        } else if (kwh <= 200) {
+            fee = 1.678*50 + 1.734*50 + 2.014*(kwh-100);
+        } else if (kwh <= 300) {
+            fee = 1.678*50 + 1.734*50 + 2.014*100 + 2.536*(kwh-200);
+        } else if (kwh <= 400) {
+            fee = 1.678*50 + 1.734*50 + 2.014*100 + 2.536*100 + 2.834*(kwh-300);
+        } else {
+            fee = 1.678*50 + 1.734*50 + 2.014*100 + 2.536*100 + 2.834*100 + 2.927*(kwh-400);
+        }
+        alert("Tiền điện phải trả là: "+fee+" VND");
+    } else {
+        alert("Tiền điện vừa nhập không hợp lệ");
+    }
+
+</script>
+</body>
+</html>
