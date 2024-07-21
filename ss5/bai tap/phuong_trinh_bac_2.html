@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = +prompt("nhập một số a");
+    let b = +prompt("nhâp một số b");
+    let c = +prompt("nhập một số c");
+    if(a===0&&b===0&&c===0){
+        alert("phương trình vô số nghiệm")
+    }else{
+        let A =b**2-4*a*c
+        if(A<0){
+            alert("phương trình vô nghiệm");
+        }else if(A==0){
+            let x = -(b/2*a);
+            alert("phương trình có nghiệm kép" +x)
+        }else if(A>0){
+            let x1 = (-b+ Math.sqrt(A))/(2*a);
+            let x2 = (-b-Math.sqrt(A))/(2*a);
+            alert("phương trình có nghiệm 1:"+ x1);
+            alert("phương trình có nghiệm 2:"+ x2);
+        }
+    }
+</script>
+</body>
+</html>
