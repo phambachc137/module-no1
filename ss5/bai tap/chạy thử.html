@@ -6,27 +6,28 @@
 </head>
 <body>
 <script>
-    let kwh = parseFloat(prompt("Nhập số điện đã dùng (kWh)"));
-    let fee = 0.0;
-    if (kwh > 0 && !isNaN(kwh)) {
-        if (kwh <= 50) {
-            fee = 1.678*kwh;
-        } else if (kwh <= 100) {
-            fee = 1.678*50 + 1.734*(kwh-50);
-        } else if (kwh <= 200) {
-            fee = 1.678*50 + 1.734*50 + 2.014*(kwh-100);
-        } else if (kwh <= 300) {
-            fee = 1.678*50 + 1.734*50 + 2.014*100 + 2.536*(kwh-200);
-        } else if (kwh <= 400) {
-            fee = 1.678*50 + 1.734*50 + 2.014*100 + 2.536*100 + 2.834*(kwh-300);
+    let a = +prompt("Nhập số nguyên a:");
+    let b = +prompt("Nhập số nguyên b:");
+    let c = +prompt("Nhập số nguyên c:");
+    if (Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c)) {
+        if (a==0 && b==0 && c==0) {
+            alert("Phương trình "+a+"x^2+("+b+")x+("+c+") = 0 có vô số nghiệm");
         } else {
-            fee = 1.678*50 + 1.734*50 + 2.014*100 + 2.536*100 + 2.834*100 + 2.927*(kwh-400);
+            let delta = b**2-4*a*c;
+            if (delta < 0) {
+                alert("Phương trình "+a+"x^2+("+b+")x+("+c+") = 0 vô nghiệm");
+            } else if (delta == 0) {
+                let x = -(b/(2*a));
+                alert("Phương trình "+a+"x^2+("+b+")x+("+c+") = 0 có nghiệm kép\nx = "+x);
+            } else {
+                let x1 = (-b+Math.sqrt(delta))/(2*a);
+                let x2 = (-b-Math.sqrt(delta))/(2*a);
+                alert("Phương trình "+a+"x^2+("+b+")x+("+c+") = 0 có 2 nghiệm \nx1 = "+x1+"\nx2 = "+x2);
+            }
         }
-        alert("Tiền điện phải trả là: "+fee+" VND");
     } else {
-        alert("Tiền điện vừa nhập không hợp lệ");
+        alert("Số vừa nhập không hợp lệ");
     }
-
 </script>
 </body>
 </html>
