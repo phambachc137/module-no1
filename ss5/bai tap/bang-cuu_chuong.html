@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = "<table cellpadding='10' style='border: 2px solid black;'>";
+    let x = 2;
+    for (let i = 1; i <= 9 ; i++) {
+        for (let j = 2; j <= 9 ; j++) {
+            x = j*i;
+            a +="<td style='border: 2px solid black;'>"+j+"x"+i+"="+x+"</td>";
+        }
+        a +="<tr>";
+    }
+    document.write(a);
+</script>
+</body>
+</html>
