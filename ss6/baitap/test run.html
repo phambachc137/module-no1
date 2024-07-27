@@ -6,19 +6,20 @@
 </head>
 <body>
 <script>
-    let stringArray=[];
-    let number=+prompt('nhập đọ dày chuoix ký tự');
-    let i;
-    for (i = 0; i < number; i++)
-    {
-        stringArray[i]=prompt('nập ký tự thứ'+i)
+    let number1, number2, temp, sum = null;
+    for (let i = 0; i < 20; i++) {
+        if (i === 1) {
+            number1 = 0;
+            number2 = 1;
+            sum=1;
+        } else {
+            sum+=number1+number2;
+            temp = number1;
+            number1 = number2;
+            number2 = temp + number2;
+        }
     }
-    document.write('chuỗi ban đầu là: '+stringArray+'<br>');
-    let myString=[];
-    for (i--;i>=0;i--){
-        myString.push(stringArray[i]);
-    }
-    document.write('chuỗi đảo ngược là: '+myString.join(''));
+    document.write(sum);
 </script>
 </body>
 </html>
