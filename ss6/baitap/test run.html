@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let stringArray=[];
+    let number=+prompt('nhập đọ dày chuoix ký tự');
+    let i;
+    for (i = 0; i < number; i++)
+    {
+        stringArray[i]=prompt('nập ký tự thứ'+i)
+    }
+    document.write('chuỗi ban đầu là: '+stringArray+'<br>');
+    let myString=[];
+    for (i--;i>=0;i--){
+        myString.push(stringArray[i]);
+    }
+    document.write('chuỗi đảo ngược là: '+myString.join(''));
+</script>
+</body>
+</html>
