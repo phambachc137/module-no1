@@ -6,20 +6,16 @@
 </head>
 <body>
 <script>
-    let number1, number2, temp, sum = null;
-    for (let i = 0; i < 20; i++) {
-        if (i === 1) {
-            number1 = 0;
-            number2 = 1;
-            sum=1;
-        } else {
-            sum+=number1+number2;
-            temp = number1;
-            number1 = number2;
-            number2 = temp + number2;
-        }
+    let num1, num2, i, temp;
+    num1 = num2 = 1;
+    let soLuong = parseInt(prompt('Nhap so luong so Fibanacci: '));
+    for (i = 0; i < soLuong; i++) {
+        document.write(num1 + "<br>")
+        temp = num1 + num2;
+        num1 = num2;
+        num2 = temp
+
     }
-    document.write(sum);
 </script>
 </body>
 </html>

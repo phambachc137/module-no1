@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="game()">Play</button>
+<script>
+function game(){
+    let a = prompt("nhập khoảng mà số bạn muốn đoán")
+    let b = Math.floor(Math.random() * a)
+    console.log(b)
+    let c = prompt("nhập số bạn đoán")
+    for (let i = 0; i <3 ; i++) {
+        if(c<b){
+            alert("số bạn nhập bé hơn số cần tìm")
+        }else if(c>b){
+            alert("số bạn nhập lớn hơn số cần tìm")
+        }else{
+            alert("chúc mừng bạn đã nhập đúng")
+        }break;
+    }
+}
+
+
+</script>
+</body>
+</html>
