@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    for (let i = 0; i <=5; i++){// chiều cao của tam giác
+        for (let j = 0; j <i; j++){//số lượng sao kết thúc = chiều dài tam giác
+            document.write("*")
+        }
+        document.write("<br/>")
+    }
+document.write("<br><br>")
+
+    for (let i = 5; i>0 ; i--) {
+        for (let j = 0; j <i; j++) {
+            document.write("*")
+        }
+        document.write("<br>")
+    }
+document.write("<br>")
+
+    triangle1 = "";
+    for (let i = 5; i > 0; i--) {
+        for (let j = 1; j <= 5; j++) {
+            if (j >= i) {
+                triangle1 += "*";
+            } else {
+                triangle1 += "&nbsp;&nbsp;";
+            }
+        }
+        triangle1 += "<br>";
+    }
+    document.write(triangle1 + "<br><br>");
+
+    triangle1 = "";
+    for (let i = 1; i <= 5; i++) {
+        for (let j = 1; j <= 5; j++) {
+            if (j >= i) {
+                console.log("1");
+                triangle1 += "*";
+            } else {
+                triangle1 += "&nbsp;&nbsp;";
+            }
+        }
+        triangle1 += "<br>";
+    }
+    document.write(triangle1 + "<br><br>");
+
+</script>
+</body>
+</html>
