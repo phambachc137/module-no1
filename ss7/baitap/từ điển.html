@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Nhập từ</p>
+<input type="text" id="string">
+<button onclick="transcript()">Dịch</button>
+<p id="result"></p>
+<script>
+ function transcript(){
+     let words = document.getElementById("string").value;
+     let english = ["banana","apple","happy","jumping"]
+     let vietnamese =["chuối","táo","hạnh phúc","nhảy"]
+     let result =""
+     for (let i = 0; i < english.length; i++) {
+         if(words===english[i]){
+             result=vietnamese[i];
+             break;
+         }
+         }
+     }document.getElementById("result").innerText=result
+
+     }
+
+</script>
+</body>
+</html>

@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<script>
+
     let number = Math.pow(a,b)
     //Tính số mũ
     //số a: cơ số
@@ -14,37 +14,66 @@
     // ** có thể thay thế Math.pow
     console.log(number)
 
-</script>
-<script>
+
+
     // tất cá có kiểu dữ liệu nhập vào đều là kiểu dự liệu string (chuỗi)
     let string = prompt(" nhập vào 1 số");
     console.log("giá trị:" + string +' kdl' + typeof string)
     let number =parseFloat(string);
     // parasrFloat: chuyển đổi dữ liệu chuỗi sang dữ liệu số
     console.log("giá trị:" +number + 'kdl'+ typeof number)
-</script>
-<script>
+
+
     //for(let i = 2; i<12; i++){
         //if(i%2 ===0){
            // document.write(i +"<br>");
        // }
    // }
-</script>
-<script>
-    let a = +prompt("enter number n")
-    while(a<0 || a>20){
-        a = prompt("enter number n")
-    }
-</script>
-<script>
-    for(let i = 1; i<10; i++){
-        if(i%5 ===0){
-            // break: ngay lập tức thoát vòng lặp
-            // continue; bỏ qua vòng lặp hiện để đi đến vòng tiếp theo
+///script>
+// push():thêm phần tử vào cuối mảng
+// pop(): xóa 1 phần tử ở cuối bảng
+// shift(): xóa 1 phần tử đầu bảng
+// unshift(): thêm 1 phần tử vào đầu bảng
+// resverse():đảo ngược vị trí các phần tử trong bảng
+// concat(): nối 2 mảng lại với nhau
+// splice(a,b,....c): thêm hoặc xóa phần tử ở vị trí bất kỳ*/
+   a: vị trí bắt đầu xóa
+    b: số lượng để xóa
+    ....c: thêm phần tử
 
-        }
-        document.write(i+"<br>")//<br> : để xuống dòng
-    }
+  *  let numbers =[123,321,23,12];
+    numbers.splice(2,0,1,3,4,5,6);
+   * console.log(numbers)
+
+    let numbers=[2,3,4,5];
+    numbers.sort();
+    //sort: sắp xếp theo đơn vị số từng hàng 12 >112 vì 2 lớn 1 ở hàng thứ 2
+    console.log(numbers)
+
+//cho người dùng khởi tạo mảng 2 chiều với kích thước 3*3
+<script>
+       //let number = [6,123,5345,12]
+    //hiển bảng [1,2,3],[4,5,6]
+    // indexof: trả về vị trí đầu tiên của phần tử trong mảng
+       // và trả về -1 nếu phần tử trong mảng ko tồn tại trong mảng
+       //console.log(number.includes(6))
+       //???: hàm chuyển viết hoa thành viết thường (cx có hàm làm ngược lại tra mạng)
+       let number =[1,2,3,4,5];
+       for(let i of number){
+           console.log(i)
+       }//hiện độ dài number
+       // for in: trẻ về vị trí của phần tử trong mảng vd for(let i in number)
+       // for of: trả về giá trị của phần tử trong mảng vd for(let i of number)
+        let numbers =[123,1345,123135,12452]
+       let max= numbers[0]
+       for(let i of numbers){
+           if(i<max){
+               max =i;
+           }
+       }
+       console.log(max)
+       // tìm số lớn nhất
+
 </script>
 </body>
 </html>
