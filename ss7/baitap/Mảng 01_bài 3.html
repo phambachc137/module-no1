@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let avg =0
+    let number=[]
+    let max =0
+    let distant =prompt("nhập số lượng dãy số:")
+    for (let i = 0; i < distant; i++) {
+        number[i]=Math.floor(Math.random()*31)
+        avg+=number[i]
+        if(max<number[i]){
+            max=number[i]
+        }
+    }alert("MẢNG"+number+"\nSố lớn nhất:"+max+"\nTrung bình:"+avg/distant)
+</script>
+</body>
+</html>
