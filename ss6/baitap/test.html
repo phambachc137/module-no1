@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number1 = +prompt('nhập số lượng phần tử mảng A');
+    let arrA = [];
+    let arrB = [];
+    let arrC = [];
+    let i;
+    for (i = 0; i < number1; i++) {
+        arrA[i] = +prompt('nhập số thứ ' + i + ' của dãy số nguyên A');
+    }
+    document.write('dãy số nguyên A là ' + arrA + '<br>');
+    let number2 = +prompt('nhập số lượng phần tử mảng B');
+    for (i = 0; i < number2; i++) {
+        arrB[i] = +prompt('nhập số thứ ' + i + ' của dãy số nguyên B');
+    }
+    document.write('dãy số nguyên B là ' + arrB + '<br>');
+    for (let value of arrA) {
+        arrC.push(value);
+    }
+    for (let value of arrB) {
+        arrC.push(value);
+    }
+    document.write('dãy số nguyên C là ' + arrC);
+</script>
+</body>
+</html>

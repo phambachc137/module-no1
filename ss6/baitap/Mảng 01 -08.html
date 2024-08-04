@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number = +prompt('nhập số lượng phần tử của dãy số nguyên');
+    let intArr = [];
+    let i;
+    for (i = 0; i < number; i++) {
+        intArr[i] = prompt('nhập số thứ ' + i + ' của dãy số nguyên');
+    }
+    document.write('Dãy số nguyên là: ' + intArr + '<br>');
+    intArr.sort(function(a,b){
+        return a-b;
+    })
+</script>
+</body>
+</html>

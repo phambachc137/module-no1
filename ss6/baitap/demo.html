@@ -26,18 +26,23 @@
     //console.log(result)
 </script>
 <script>
-    function sumEvenInArry(numbers){
-        for(let ele of numbers){
-            if(ele %2===0){
-                sumEven +=ele;
-
-            }
-        }
-        return sumEven;
+    let aarNum=[];
+    for (let i=0;i<10;i++){
+        aarNum[i]= +prompt("Nhập phần tử thứ "+i);
     }
-    let numbers = [1,2,3,4,5,6,7]
-    let sum = sumEvenInArry(numbers);
-    console.log(sum)
+    let number= +prompt("Nhập 1 số nguyên:");
+    let check = false;
+    for (let j=0;j<aarNum.length;j++){
+        if (aarNum[j]===number){
+            check = true;
+        }
+    }
+    if(check){
+        alert("V is in the array");
+    }
+    else {
+        alert("V is not in the array");
+    }
 </script>
 </body>
 </html>

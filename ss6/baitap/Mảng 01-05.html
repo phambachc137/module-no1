@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let inputString = prompt("Nhập 1 chuỗi: ");
+    let arrVowels = ["a", "e", "i", "o", "u"];
+    let count = 0;
+    for (let i = 0; i < inputString.length; i++) {
+        for (let j = 0; j < arrVowels.length; j++) {
+            if (inputString[i] === arrVowels[j]) {
+                count++;
+                break;
+            }
+        }
+    }
+    alert("Số nguyên âm trong chuỗi là " + count);
+</script>
+</body>
+</html>
