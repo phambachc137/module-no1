@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let intArr= [[2, 4, 5, 6, 7], [-1, 2, -3, 0, -4], [1, 8, 4, 3, 2], [3, 7, 3, 5, 6]];
+    for(let key in intArr){
+        console.log("row"+key)
+        for(let value of intArr){
+            console.table(key,value)
+        }
+    }
+</script>
+</body>
+</html>

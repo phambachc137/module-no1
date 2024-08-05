@@ -6,27 +6,22 @@
 </head>
 <body>
 <script>
-    let number1 = +prompt('nhập số lượng phần tử mảng A');
-    let arrA = [];
-    let arrB = [];
-    let arrC = [];
+    let stringArray = [];
+    let number = +prompt('nhập đọ dài của mảng');
     let i;
-    for (i = 0; i < number1; i++) {
-        arrA[i] = +prompt('nhập số thứ ' + i + ' của dãy số nguyên A');
+    for (i = 0; i < number; i++) {
+        stringArray[i] = prompt('nhập phần tủ thứ ' + i)
     }
-    document.write('dãy số nguyên A là ' + arrA + '<br>');
-    let number2 = +prompt('nhập số lượng phần tử mảng B');
-    for (i = 0; i < number2; i++) {
-        arrB[i] = +prompt('nhập số thứ ' + i + ' của dãy số nguyên B');
+    let count = 0;
+    document.write('mảng đã cho là: ' + stringArray + '<br>');
+    for (let value of stringArray) {
+        debugger
+        let i = Math.abs(value)+0.1;
+        if (typeof i === 'number'&& i) {
+            count++;
+        }
     }
-    document.write('dãy số nguyên B là ' + arrB + '<br>');
-    for (let value of arrA) {
-        arrC.push(value);
-    }
-    for (let value of arrB) {
-        arrC.push(value);
-    }
-    document.write('dãy số nguyên C là ' + arrC);
+    document.write('Mảng có ' + count + ' phần tử là ký tự số');
 </script>
 </body>
 </html>
