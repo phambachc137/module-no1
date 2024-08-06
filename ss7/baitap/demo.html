@@ -1,10 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+    let number =5
+    function doSth(num){
+        num++
+        console.log("trong hàm"+num)
+    }// bàng cách nào dấy num = number=5 ++ lên thành 6
+    doSth(number);// đây là khai báo function (lồng 2 giá trị vào 1 function với 2 đại diện khác nhau)
+
+    console.log('ngoài hàm'+number)
+    // in ra là trong hàm 6
+    // in ra là ngoài hàm 5
+    // console bên ngoài function sẽ in kiểu khác
+</script>
+<script>
+    let number =[]
+    function doSth(num){
+        num[0]++
+        console.log("trong hàm"+num)
+    }
+    doSth(number)
+    console.log("hàm ngoài:"+number)
+    // in ra trong hàm là 6
+    // in re trong hàm là 6
+</script>
+<script>
+    let array=["iphone","samsung"]
+    function displayProduct(arr){
+        let str =""
+        for (let i = 0; i <arr.length ; i++) {
+            str+="<tr>"+
+                        "<td>"+arr[i]+"</td>"+
+                        "<td>" +
+                            "<button>"+edit+"</button>"+
+                        "</td>"+
+        }
+    }
+</script>
+<script>
+    class Parent{
+        constructor(name,age) {
+            console.log("lớp cha dc gọi")
+            this.name=name
+            this.age=age
+        }
+    }
+    setName(newName){
+        this.name=NewName
+    }
+    getName(){
+        return this.name;
+    }
+    say(){
+        console.log("lớp cha nói")
+    }
+    //extends là từ khóa cho phép 1 lớp kế thừa 1 lớp khác
+    class Child extends Parent{
+        constructor(name,age,email) {
+            //super() gọi đến constructor của lớp cha
+            super(name.age)
+            this.email=email
+        }
+
+    }
+    let child =new Child("nguyen văn a",23,"huiasfhuiaf")
+    child.setName("làm j đấy ")
+    console.log(child)
+</script>
 </body>
 </html>
