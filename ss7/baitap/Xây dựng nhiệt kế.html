@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Temperature {
+        constructor(celsius) {
+            if (celsius < -273) {
+                alert("temperature under -237 is bulls**")
+            } else {
+                this.celsius = celsius;
+            }
+        }
+
+        toFahrenheit() {
+            return (9 * this.celsius) / 5 + 32;
+        }
+
+        toKevin() {
+            return this.celsius + 273.15;
+        }
+    }
+    let temp = new Temperature(-1734);
+    console.log(temp);
+    let temperature = new Temperature(25);
+    console.log(temperature);
+    document.write("Fahrenheit = "+temperature.toFahrenheit()+", Kevin = "+temperature.toKevin());
+</script>
+</body>
+</html>

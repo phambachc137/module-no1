@@ -6,19 +6,33 @@
 </head>
 <body>
 <script>
-    function findMin(a,b,c) {
-        if(a===b&& b===c){
-            return 'không tìm thấy số nhỏ nhất';
-        }else {
-            if (a<b && a<c){
-                return a;
-            }else if (b<c){
-                return b;
-            }else {
-                return c;
-            }
+    class Rectangle {
+        constructor(length, width) {
+            this.length = length;
+            this.width = width;
+        }
+
+        getArea() {
+            return this.length * this.width;
+        }
+
+        getCircumference() {
+            return (this.width + this.length) * 2;
+        }
+
+        displayRectangleOnScreen() {
+            let canvas = document.getElementById("display");
+            let ctxt = canvas.getContext("2d");
+            ctxt.fillStyle = "#00ffee";
+            ctxt.fillRect(0, 0, this.length, this.width);
         }
     }
+
+    let rectangle = new Rectangle(300, 100);
+    rectangle.displayRectangleOnScreen();
+    rectangle.length = 250;
+    rectangle.width = 80;
+    document.getElementById("show").innerHTML = "Area: " + rectangle.getArea() + "<br>Circumference: " + rectangle.getCircumference();
 </script>
 </body>
 </html>

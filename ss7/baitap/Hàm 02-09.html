@@ -9,8 +9,11 @@
     let Arr=["tung","bach","pham","34","87"]
     let stuff=prompt("nhập bất kỳ để check:")
     function checkStr(){
-        Arr.includes(stuff)
-        alert("it in")
+        if(Arr.includes(stuff)){
+            alert("it in")
+        }else{
+            alert("not in yet")
+        }
         return stuff
     }
     document.write(checkStr(stuff))
