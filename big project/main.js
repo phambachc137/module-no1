@@ -29,7 +29,7 @@ class Player{
     draw(){
         context.beginPath()
         context.arc(this.position.x, this.position.y, this.radius,0,Math.PI*2)
-        context.fillStyle="yellow"
+        context.fillStyle='yellow'
         context.fill()
         context.closePath()
     }
@@ -41,12 +41,14 @@ class Player{
 }
 
 class Ghost{
-    constructor({position,velocity}) {
+    static speed =1
+    constructor({position,velocity,color='red'}) {
         this.position=position
         this.velocity=velocity
         this.radius=15
-        this.color='red'
+        this.color= color
         this.prevCollisions=[]
+        this.speed=1
     }
     draw(){
         context.beginPath()
@@ -78,16 +80,40 @@ class Pellet{
 
 const Pellets=[]
 const boundaries =[]
-const ghost=[new Ghost({
+const ghost=[
+    new Ghost({
     position:{
         x:Boundary.width*6+Boundary.width/2,
         y:Boundary.height+Boundary.height/2
     },
     velocity:{
-        x:5,
+        x:Ghost.speed,
         y:0
-    }
-})
+    },
+    color:'red'
+}),
+    new Ghost({
+        position:{
+            x:Boundary.width*6+Boundary.width/2,
+            y:Boundary.height*3+Boundary.height/2
+        },
+        velocity:{
+            x:Ghost.speed,
+            y:0
+        },
+        color:'blue'
+    }),
+    new Ghost({
+        position:{
+            x:Boundary.width*3+Boundary.width/2,
+            y:Boundary.height*11+Boundary.height/2
+        },
+        velocity:{
+            x:Ghost.speed,
+            y:0
+        },
+        color:'green'
+    })
 ]
 const player =new Player({
     position:{
@@ -296,18 +322,16 @@ map.forEach((row,i)=>{// i= height
     })
 })
 
-function circleCollideWithRectangle({// create domain
-                                        circle,
-                                        rectangle
-                                    }){
-    return (circle.position.y-circle.radius+circle.velocity.y<=rectangle.position.y+rectangle.height// top nv
-        && circle.position.x+circle.radius+ circle.velocity.x >= rectangle.position.x // right side
-        && circle.position.y+circle.radius+circle.velocity.y >= rectangle.position.y // under
-        && circle.position.x-circle.radius+circle.velocity.x <= rectangle.position.x+rectangle.width)
+function circleCollideWithRectangle({circle,rectangle}){
+    const padding =Boundary.width/2-circle.radius-1
+    return (circle.position.y-circle.radius+circle.velocity.y<=rectangle.position.y+rectangle.height+padding// top nv
+        && circle.position.x+circle.radius+ circle.velocity.x >= rectangle.position.x-padding // right side
+        && circle.position.y+circle.radius+circle.velocity.y >= rectangle.position.y-padding // under
+        && circle.position.x-circle.radius+circle.velocity.x <= rectangle.position.x+rectangle.width+padding)
 }
-
+let animationId
 function animate () {// infinit loop
-    requestAnimationFrame(animate)
+    animationId=requestAnimationFrame(animate)
     context.clearRect(0,0,canvas.width,canvas.height)
     if(keys.w.pressed && lastKey==='w' ){// di chuyển 4 hướng, di chuyển mượt ko bị khựng
         for (let i = 0; i <boundaries.length ; i++) {
@@ -392,7 +416,6 @@ function animate () {// infinit loop
         const Pellet=Pellets[i]
         Pellet.draw()
         if(Math.hypot(Pellet.position.x-player.position.x,Pellet.position.y-player.position.y)<Pellet.radius+player.radius){
-            console.log('touching')
             Pellets.splice(i,1)
             score+=10//giá trị let score ở background
             scoreEL.innerHTML=score// truyền giá trị score ở background ra ScoreEL trưng ra khai báo sẵn ở html
@@ -418,12 +441,16 @@ function animate () {// infinit loop
     player.update()// dòng 97
     ghost.forEach(ghost=>{
         ghost.update()
+        if(Math.hypot(ghost.position.x-player.position.x,ghost.position.y-player.position.y)<ghost.radius+player.radius){
+            cancelAnimationFrame(animationId)
+            console.log('u pathetic')
+        }// lúc nv vs ghost va chạm
         const collisions=[]//ghost nhận bt tường
         boundaries.forEach(boundary=>{//từng image hộp nhỏ trong biên giới hộp to
             if (!collisions.includes('right')&&circleCollideWithRectangle({//(!): mang nghĩa phủ định. khi ghost chạm biên giới mà ko có right thì push(dòng 433)
                 circle: {
                     ...ghost, velocity: {
-                        x: 5,
+                        x: ghost.speed,
                         y: 0
                     }
                 },
@@ -435,7 +462,7 @@ function animate () {// infinit loop
             if (!collisions.includes('left')&&circleCollideWithRectangle({
                 circle: {
                     ...ghost, velocity: {
-                        x: -5,
+                        x: -ghost.speed,
                         y: 0
                     }
                 },
@@ -448,7 +475,7 @@ function animate () {// infinit loop
                 circle: {
                     ...ghost, velocity: {
                         x: 0,
-                        y: -5
+                        y: -ghost.speed
                     }
                 },
                 rectangle: boundary
@@ -460,7 +487,7 @@ function animate () {// infinit loop
                 circle: {
                     ...ghost, velocity: {
                         x: 0,
-                        y: 5
+                        y: ghost.speed
                     }
                 },
                 rectangle: boundary
@@ -491,18 +518,18 @@ function animate () {// infinit loop
             switch (direction){// ghost auto move
                 case 'down':
                     ghost.velocity.x=0
-                    ghost.velocity.y=2
+                    ghost.velocity.y=ghost.speed
                     break
                 case 'up':
                     ghost.velocity.x=0
-                    ghost.velocity.y=-2
+                    ghost.velocity.y=-ghost.speed
                     break
                 case 'right':
-                    ghost.velocity.x=2
+                    ghost.velocity.x=ghost.speed
                     ghost.velocity.y=0
                     break
                 case 'left':
-                    ghost.velocity.x=-2
+                    ghost.velocity.x=-ghost.speed
                     ghost.velocity.y=0
                     break
             }
