@@ -439,6 +439,7 @@ function animate () {// infinit loop
     //ghost touch player
     if(Math.hypot(ghost.position.x-player.position.x,ghost.position.y-player.position.y)<ghost.radius+player.radius) {
         if(ghost.scared){
+            ghosts.splice(i,1)
         }else {
             cancelAnimationFrame(animationId)
             console.log('u pathetic')
@@ -446,6 +447,10 @@ function animate () {// infinit loop
     }
     }
 
+    if(Pellets.length===0){
+        console.log('lucky bastard')
+        cancelAnimationFrame(animationId)
+    }
         // power up go
     for (let i = powerUps.length-1; 0 <=i ; i--) {
         const powerUp=powerUps[i]
