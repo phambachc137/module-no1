@@ -83,7 +83,7 @@ const ghost=[new Ghost({
         y:Boundary.height+Boundary.height/2
     },
     velocity:{
-        x:0,
+        x:5,
         y:0
     }
 })
@@ -417,6 +417,58 @@ function animate () {// infinit loop
     player.update()// dòng 97
     ghost.forEach(ghost=>{
         ghost.update()
+        const collisions=[]
+        boundaries.forEach(boundary=>{
+            if (collisions.includes('right')&&circleCollideWithRectangle({
+                circle: {
+                    ...ghost, velocity: {
+                        x: 5,
+                        y: 0
+                    }
+                },
+                rectangle: boundary
+            })
+            ){
+              collisions.push('right')
+            }
+            if (collisions.includes('left')&&circleCollideWithRectangle({
+                circle: {
+                    ...ghost, velocity: {
+                        x: -5,
+                        y: 0
+                    }
+                },
+                rectangle: boundary
+            })
+            ){
+                collisions.push('left')
+            }
+            if (collisions.includes('up')&&circleCollideWithRectangle({
+                circle: {
+                    ...ghost, velocity: {
+                        x: 0,
+                        y: -5
+                    }
+                },
+                rectangle: boundary
+            })
+            ){
+                collisions.push('up')
+            }
+            if (collisions.includes('down')&&circleCollideWithRectangle({
+                circle: {
+                    ...ghost, velocity: {
+                        x: 0,
+                        y: 5
+                    }
+                },
+                rectangle: boundary
+            })
+            ){
+                collisions.push('down')
+            }
+        })
+        console.log(collisions)
     })
 }
 
