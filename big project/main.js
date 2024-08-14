@@ -46,6 +46,7 @@ class Ghost{
         this.velocity=velocity
         this.radius=15
         this.color='red'
+        this.prevCollisions=[]
     }
     draw(){
         context.beginPath()
@@ -417,9 +418,9 @@ function animate () {// infinit loop
     player.update()// dòng 97
     ghost.forEach(ghost=>{
         ghost.update()
-        const collisions=[]
-        boundaries.forEach(boundary=>{
-            if (collisions.includes('right')&&circleCollideWithRectangle({
+        const collisions=[]//ghost nhận bt tường
+        boundaries.forEach(boundary=>{//từng image hộp nhỏ trong biên giới hộp to
+            if (!collisions.includes('right')&&circleCollideWithRectangle({//(!): mang nghĩa phủ định. khi ghost chạm biên giới mà ko có right thì push(dòng 433)
                 circle: {
                     ...ghost, velocity: {
                         x: 5,
@@ -431,7 +432,7 @@ function animate () {// infinit loop
             ){
               collisions.push('right')
             }
-            if (collisions.includes('left')&&circleCollideWithRectangle({
+            if (!collisions.includes('left')&&circleCollideWithRectangle({
                 circle: {
                     ...ghost, velocity: {
                         x: -5,
@@ -443,7 +444,7 @@ function animate () {// infinit loop
             ){
                 collisions.push('left')
             }
-            if (collisions.includes('up')&&circleCollideWithRectangle({
+            if (!collisions.includes('up')&&circleCollideWithRectangle({
                 circle: {
                     ...ghost, velocity: {
                         x: 0,
@@ -455,7 +456,7 @@ function animate () {// infinit loop
             ){
                 collisions.push('up')
             }
-            if (collisions.includes('down')&&circleCollideWithRectangle({
+            if (!collisions.includes('down')&&circleCollideWithRectangle({
                 circle: {
                     ...ghost, velocity: {
                         x: 0,
@@ -468,11 +469,52 @@ function animate () {// infinit loop
                 collisions.push('down')
             }
         })
-        console.log(collisions)
+        if(collisions.length>ghost.prevCollisions.length)// ghost tiên toán lối rẽ(xác định tường hổng)
+        ghost.prevCollisions=collisions
+        if(JSON.stringify(collisions) !== JSON.stringify(ghost.prevCollisions)){//JSON: dự liệu lưu trữ thông tin nhỏ nhẹ cho máy tính
+            console.log(collisions)
+
+            console.log(collisions)
+            console.log(ghost.prevCollisions)
+            if(ghost.velocity.y>0)ghost.prevCollisions.push('right')
+            else if(ghost.velocity.x<0)ghost.prevCollisions.push('left')
+            else if(ghost.velocity.y<0)ghost.prevCollisions.push('up')
+            else if(ghost.velocity.y>0)ghost.prevCollisions.push('down')//xác định những lối có thể đi
+
+            const pathways= ghost.prevCollisions.filter((collision)=>{
+                return !collisions.includes(collision)
+            })
+            console.log({pathways})
+
+            const direction=pathways[Math.floor(Math.random()*pathways.length)]//pick bừa 1 đg
+
+            switch (direction){// ghost auto move
+                case 'down':
+                    ghost.velocity.x=0
+                    ghost.velocity.y=2
+                    break
+                case 'up':
+                    ghost.velocity.x=0
+                    ghost.velocity.y=-2
+                    break
+                case 'right':
+                    ghost.velocity.x=2
+                    ghost.velocity.y=0
+                    break
+                case 'left':
+                    ghost.velocity.x=-2
+                    ghost.velocity.y=0
+                    break
+            }
+
+            ghost.prevCollisions=[]// reset toàn bộ phần trên, ghost sẽ di chuyển vs đôi hướng khi chạm tường
+        }
+        //
     })
 }
 
-animate()// xác định giá trị nút chỉ định
+animate()
+// xác định giá trị nút chỉ định
 window.addEventListener('keydown',({key})=>{// khi nhấn nút
     switch (key){
         case 'w':
