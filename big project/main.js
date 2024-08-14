@@ -40,6 +40,27 @@ class Player{
     }
 }
 
+class Ghost{
+    constructor({position,velocity}) {
+        this.position=position
+        this.velocity=velocity
+        this.radius=15
+        this.color='red'
+    }
+    draw(){
+        context.beginPath()
+        context.arc(this.position.x, this.position.y, this.radius,0,Math.PI*2)
+        context.fillStyle=this.color
+        context.fill()
+        context.closePath()
+    }
+    update(){
+        this.draw()
+        this.position.x+= this.velocity.x
+        this.position.y+= this.velocity.y
+    }
+}
+
 class Pellet{
     constructor({position}) {
         this.position=position
@@ -56,6 +77,17 @@ class Pellet{
 
 const Pellets=[]
 const boundaries =[]
+const ghost=[new Ghost({
+    position:{
+        x:Boundary.width*6+Boundary.width/2,
+        y:Boundary.height+Boundary.height/2
+    },
+    velocity:{
+        x:0,
+        y:0
+    }
+})
+]
 const player =new Player({
     position:{
         x:Boundary.width+Boundary.width/2,
@@ -108,165 +140,165 @@ function createImage(src){
 
 map.forEach((row,i)=>{// i= height
     row.forEach((symbol,j)=>{// j=width
-            switch(symbol){
-                case'-':
-                    boundaries.push(new Boundary({
+        switch(symbol){
+            case'-':
+                boundaries.push(new Boundary({
                         position:{
                             x: Boundary.width *j,
                             y: Boundary.height*i
                         },
                         image:createImage('./image/pipeHorizontal.png')
                     })
-                    );
-                    break
-                case'|':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/pipeVertical.png')
-                        })
-                    );
-                    break
-                case'1':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/pipeCorner1.png')
-                        })
-                    );
-                    break
-                case'2':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/pipeCorner2.png')
-                        })
-                    );
-                    break
-                case'3':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/pipeCorner3.png')
-                        })
-                    );
-                    break
-                case'4':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/pipeCorner4.png')
-                        })
-                    );
-                    break
-                case'b':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/block.png')
-                        })
-                    );
-                    break
-                case'[':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/capLeft.png')
-                        })
-                    );
-                    break
-                case']':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/capRight.png')
-                        })
-                    );
-                    break
-                case'_':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/capBottom.png')
-                        })
-                    );
-                    break
-                case'^':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/capTop.png')
-                        })
-                    );
-                    break
-                case'+':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/pipeCross.png')
-                        })
-                    );
-                    break
-                case'5':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/pipeConnectorTop.png')
-                        })
-                    );
-                    break
-                case'7':
-                    boundaries.push(new Boundary({
-                            position:{
-                                x: Boundary.width *j,
-                                y: Boundary.height*i
-                            },
-                            image:createImage('./image/pipeConnectorBottom.png')
-                        })
-                    );
-                    break
-                case'.':
-                    Pellets.push(new Pellet({
-                            position:{
-                                x: j*Boundary.width+Boundary.width/2,
-                                y: i*Boundary.height+Boundary.height/2,
-                            },
-                        })
-                    );
-                    break
+                );
+                break
+            case'|':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/pipeVertical.png')
+                    })
+                );
+                break
+            case'1':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/pipeCorner1.png')
+                    })
+                );
+                break
+            case'2':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/pipeCorner2.png')
+                    })
+                );
+                break
+            case'3':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/pipeCorner3.png')
+                    })
+                );
+                break
+            case'4':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/pipeCorner4.png')
+                    })
+                );
+                break
+            case'b':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/block.png')
+                    })
+                );
+                break
+            case'[':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/capLeft.png')
+                    })
+                );
+                break
+            case']':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/capRight.png')
+                    })
+                );
+                break
+            case'_':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/capBottom.png')
+                    })
+                );
+                break
+            case'^':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/capTop.png')
+                    })
+                );
+                break
+            case'+':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/pipeCross.png')
+                    })
+                );
+                break
+            case'5':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/pipeConnectorTop.png')
+                    })
+                );
+                break
+            case'7':
+                boundaries.push(new Boundary({
+                        position:{
+                            x: Boundary.width *j,
+                            y: Boundary.height*i
+                        },
+                        image:createImage('./image/pipeConnectorBottom.png')
+                    })
+                );
+                break
+            case'.':
+                Pellets.push(new Pellet({
+                        position:{
+                            x: j*Boundary.width+Boundary.width/2,
+                            y: i*Boundary.height+Boundary.height/2,
+                        },
+                    })
+                );
+                break
 
-            }
+        }
     })
 })
 
 function circleCollideWithRectangle({// create domain
-    circle,
-    rectangle
-}){
+                                        circle,
+                                        rectangle
+                                    }){
     return (circle.position.y-circle.radius+circle.velocity.y<=rectangle.position.y+rectangle.height// top nv
         && circle.position.x+circle.radius+ circle.velocity.x >= rectangle.position.x // right side
         && circle.position.y+circle.radius+circle.velocity.y >= rectangle.position.y // under
@@ -383,6 +415,9 @@ function animate () {// infinit loop
     })
 
     player.update()// dòng 97
+    ghost.forEach(ghost=>{
+        ghost.update()
+    })
 }
 
 animate()// xác định giá trị nút chỉ định
