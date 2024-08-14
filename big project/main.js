@@ -49,11 +49,12 @@ class Ghost{
         this.color= color
         this.prevCollisions=[]
         this.speed=1
+        this.scared=false
     }
     draw(){
         context.beginPath()
         context.arc(this.position.x, this.position.y, this.radius,0,Math.PI*2)
-        context.fillStyle=this.color
+        context.fillStyle=this.scared ? 'blue': this.color //? đại diện cho true // : đại diện cho false
         context.fill()
         context.closePath()
     }
@@ -78,9 +79,23 @@ class Pellet{
     }
 }
 
+class PowerUp{
+    constructor({position}) {
+        this.position=position
+        this.radius=10
+    }
+    draw(){
+        context.beginPath()
+        context.arc(this.position.x, this.position.y, this.radius,0,Math.PI*2)
+        context.fillStyle="pink"
+        context.fill()
+        context.closePath()
+    }
+}
 const Pellets=[]
 const boundaries =[]
-const ghost=[
+const powerUps=[]
+const ghosts=[
     new Ghost({
     position:{
         x:Boundary.width*6+Boundary.width/2,
@@ -101,7 +116,7 @@ const ghost=[
             x:Ghost.speed,
             y:0
         },
-        color:'blue'
+        color:'orange'
     }),
     new Ghost({
         position:{
@@ -317,6 +332,15 @@ map.forEach((row,i)=>{// i= height
                     })
                 );
                 break
+            case'p':
+                powerUps.push(new PowerUp({
+                        position:{
+                            x: j*Boundary.width+Boundary.width/2,
+                            y: i*Boundary.height+Boundary.height/2,
+                        },
+                    })
+                );
+                break
 
         }
     })
@@ -410,12 +434,39 @@ function animate () {// infinit loop
             }
         }
     }
+    for (let i = ghosts.length-1; 0 <=i ; i--) {
+        const ghost=ghosts[i]
+    //ghost touch player
+    if(Math.hypot(ghost.position.x-player.position.x,ghost.position.y-player.position.y)<ghost.radius+player.radius) {
+        if(ghost.scared){
+        }else {
+            cancelAnimationFrame(animationId)
+            console.log('u pathetic')
+        }
+    }
+    }
 
+        // power up go
+    for (let i = powerUps.length-1; 0 <=i ; i--) {
+        const powerUp=powerUps[i]
+        powerUp.draw()
+        if(Math.hypot(powerUp.position.x-player.position.x,powerUp.position.y-player.position.y)<powerUp.radius+player.radius){
+            powerUps.splice(i,1)
 
-    for (let i = Pellets.length-1; 0 <i ; i--) {// hạt biến mất khi nv đi qua
+            ghosts.forEach(ghost =>{
+                ghost.scared= true
+                setTimeout(()=>{
+                    ghost.scared=false
+                },3000)
+            })
+
+        }
+    }
+    // touch pellets here
+    for (let i = Pellets.length-1; 0 <=i ; i--) {// hạt biến mất khi nv đi qua
         const Pellet=Pellets[i]
         Pellet.draw()
-        if(Math.hypot(Pellet.position.x-player.position.x,Pellet.position.y-player.position.y)<Pellet.radius+player.radius){
+        if(Math.hypot(Pellet.position.x-player.position.x,Pellet.position.y-player.position.y)<Pellet.radius+player.radius){// xóa pellet sau khi chạm
             Pellets.splice(i,1)
             score+=10//giá trị let score ở background
             scoreEL.innerHTML=score// truyền giá trị score ở background ra ScoreEL trưng ra khai báo sẵn ở html
@@ -439,9 +490,9 @@ function animate () {// infinit loop
     })
 
     player.update()// dòng 97
-    ghost.forEach(ghost=>{
+    ghosts.forEach(ghost=>{
         ghost.update()
-        if(Math.hypot(ghost.position.x-player.position.x,ghost.position.y-player.position.y)<ghost.radius+player.radius){
+        if(Math.hypot(ghost.position.x-player.position.x,ghost.position.y-player.position.y)<ghost.radius+player.radius && !ghost.scared){
             cancelAnimationFrame(animationId)
             console.log('u pathetic')
         }// lúc nv vs ghost va chạm
