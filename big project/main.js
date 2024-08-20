@@ -97,16 +97,16 @@ const boundaries =[]
 const powerUps=[]
 const ghosts=[
     new Ghost({
-    position:{
-        x:Boundary.width*6+Boundary.width/2,
-        y:Boundary.height+Boundary.height/2
-    },
-    velocity:{
-        x:Ghost.speed,
-        y:0
-    },
-    color:'red'
-}),
+        position:{
+            x:Boundary.width*6+Boundary.width/2,
+            y:Boundary.height+Boundary.height/2
+        },
+        velocity:{
+            x:Ghost.speed,
+            y:0
+        },
+        color:'red'
+    }),
     new Ghost({
         position:{
             x:Boundary.width*6+Boundary.width/2,
@@ -436,22 +436,22 @@ function animate () {// infinit loop
     }
     for (let i = ghosts.length-1; 0 <=i ; i--) {
         const ghost=ghosts[i]
-    //ghost touch player
-    if(Math.hypot(ghost.position.x-player.position.x,ghost.position.y-player.position.y)<ghost.radius+player.radius) {
-        if(ghost.scared){
-            ghosts.splice(i,1)
-        }else {
-            cancelAnimationFrame(animationId)
-            console.log('u pathetic')
+        //ghost touch player
+        if(Math.hypot(ghost.position.x-player.position.x,ghost.position.y-player.position.y)<ghost.radius+player.radius) {
+            if(ghost.scared){
+                ghosts.splice(i,1)
+            }else {
+                cancelAnimationFrame(animationId)
+                console.log('u pathetic')
+            }
         }
-    }
     }
 
     if(Pellets.length===0){
-        console.log('lucky bastard')
+        alert('lucky bastard')
         cancelAnimationFrame(animationId)
     }
-        // power up go
+    // power up go
     for (let i = powerUps.length-1; 0 <=i ; i--) {
         const powerUp=powerUps[i]
         powerUp.draw()
@@ -499,7 +499,8 @@ function animate () {// infinit loop
         ghost.update()
         if(Math.hypot(ghost.position.x-player.position.x,ghost.position.y-player.position.y)<ghost.radius+player.radius && !ghost.scared){
             cancelAnimationFrame(animationId)
-            console.log('u pathetic')
+
+            document.getElementById('play again')
         }// lúc nv vs ghost va chạm
         const collisions=[]//ghost nhận bt tường
         boundaries.forEach(boundary=>{//từng image hộp nhỏ trong biên giới hộp to
@@ -513,7 +514,7 @@ function animate () {// infinit loop
                 rectangle: boundary
             })
             ){
-              collisions.push('right')
+                collisions.push('right')
             }
             if (!collisions.includes('left')&&circleCollideWithRectangle({
                 circle: {
@@ -553,7 +554,7 @@ function animate () {// infinit loop
             }
         })
         if(collisions.length>ghost.prevCollisions.length)// ghost tiên toán lối rẽ(xác định tường hổng)
-        ghost.prevCollisions=collisions
+            ghost.prevCollisions=collisions
         if(JSON.stringify(collisions) !== JSON.stringify(ghost.prevCollisions)){//JSON: dự liệu lưu trữ thông tin nhỏ nhẹ cho máy tính
             console.log(collisions)
 
