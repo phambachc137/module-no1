@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number=prompt("nhập số phần tử:")
+    let arrnumber=[]
+    let numK=prompt("nhập số K:")
+    if(number>50){
+        alert("số ko hợp lệ")
+    }
+    for (let i = 0; i <number ; i++) {
+        arrnumber[i]=prompt("nhập vào từng số phần tử:")
+    }
+    let count =0
+    for (let i = 0; i <arrnumber ; i++) {
+        for (let j = arrnumber.length - 1; j > i; j--) {
+            if ((arrnumber[i] + arrnumber[j]) % numK === 0) {
+                count++
+            }
+
+        }
+    }
+    document.write('có'+count+'cặp số chia hết cho'+numK)
+</script>
+</body>
+</html>

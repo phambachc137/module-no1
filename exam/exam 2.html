@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function roundGrade(grade) {
+        if (grade < 48) {
+            return 'trượt';
+        }
+        let nextMultipleOf5 = Math.ceil(grade / 5) * 5;
+        let difference = nextMultipleOf5 - grade;
+        if (difference < 3) {
+            return nextMultipleOf5;
+        }
+        return grade;
+    }
+    let number= prompt("nhập số điểm")
+    document.write(roundGrade(number)+'số điểm là')
+</script>
+</body>
+</html>

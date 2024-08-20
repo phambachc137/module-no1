@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arr1=[5,10,15,20,25,35,40,45,50,55,60]
+    function boichung3vs5(num){
+        return num %3===0&& num % 5===0;
+    }
+    function  tongboichung(){
+        let sum=0
+        for (let i = 0; i < arr1.length; i++) {
+            if(boichung3vs5(arr1[i])){
+                sum+=arr1[i];
+            }
+        } return sum;
+    }
+    let tong = tongboichung();
+    document.write('tổng các số bội chung là:'+tong)
+</script>
+</body>
+</html>
